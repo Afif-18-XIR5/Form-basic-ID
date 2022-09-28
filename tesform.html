@@ -1,0 +1,203 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tes Form</title>
+</head>
+
+<body>
+    <form class="container" id="form-test">
+        <div class="card" id="header">
+            <div class="header-card">
+                <h1>GUGEL FORM</h1>
+            </div>
+            <p class="card-p">Wannabe Google Form Awokwokwok</p>
+        </div>
+
+        <div id="soal">
+            <div class="card">
+                <div class="header-card">
+                    soal 1
+                </div>
+                <div class="bagian-soal">
+                    <p>Siapa nama anda?</p>
+                    <input type="text" name="nama" placeholder="Jawab disini" id="inputNama" value="">
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="header-card">
+                    soal 2
+                </div>
+                <div class="bagian-soal">
+                    <p>Berapa umur anda?</p>
+                    <input type="number" name="umur" placeholder="Jawab disini" id="inputUmur" value="">
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="header-card">
+                    soal 3
+                </div>
+                <div class="bagian-soal">
+                    <p>Jenis kelamin</p>
+                    <input type="text" id="genderValue" value="" hidden>
+                    <select name="gender" id="inputGender" value="">
+                        <option></option>
+                        <option>Laki-laki</option>
+                        <option>Perempuan</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="header-card">
+                    soal 4
+                </div>
+                <div class="bagian-soal">
+                    <p>Bagaimana perasaan anda?</p>
+                    <input type="text" name="perasaan" placeholder="Jawab disini" id="inputPerasaan" value="">
+                </div>
+            </div>
+        </div>
+        <input class="button" type="submit" id="submitButton" value="Simpan jawaban">
+    </form>
+</body>
+
+</html>
+<style>
+    body {
+        font-family: arial;
+        padding: 10px;
+        background-color: #faeae7;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #header {
+        text-align: center;
+    }
+
+    .card {
+        margin: 20px auto;
+        width: 70%;
+        height: auto;
+        background-color: white;
+        overflow: auto;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card .header-card {
+        height: auto;
+        padding: 30px;
+        background-color: #f77058;
+    }
+
+    .card .header-card h1 {
+        margin: auto 0;
+    }
+
+    .card-p {
+        margin: 50px;
+    }
+
+    #soal .card .header-card {
+        height: auto;
+        padding: 20px;
+        background-color: #f77058;
+    }
+
+    .bagian-soal {
+        padding: 20px;
+    }
+
+    input,
+    select {
+        margin: 10px 0;
+        width: 70%;
+        border: none;
+        border-bottom: 1px solid black;
+        font-size: 15px;
+        background-color: white;
+    }
+
+    input:focus,
+    select:focus {
+        outline: none;
+    }
+    
+    input:disabled,
+    select:disabled{
+        color: black;
+        background-color: white;
+    }
+
+    .button {
+        margin: 20px auto;
+        font-size: 15px;
+        width: 200px;
+        padding: 20px;
+        background-color: #f77058;
+        border: none;
+        border-radius: 10px;
+    }
+
+    .button:hover {
+        color: white;
+        background-color: #f24325;
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 700px) {
+        .card{
+            width: 90%;
+        }
+        input, select{
+            width: 100%;
+        }
+    }
+</style>
+<script>
+    const form = document.getElementById('form-test')
+
+    form.addEventListener('submit', (event) => {
+        const name = document.getElementById('inputNama').value;
+        const age = document.getElementById('inputUmur').value;
+        const gender = document.getElementById('inputGender').value;
+        const feel = document.getElementById('inputPerasaan').value;
+        const formData = {
+            nama: name,
+            umur: age,
+            gender: gender,
+            perasaan: feel
+        }
+
+        document.getElementById('inputNama').setAttribute('value', name)
+        document.getElementById('inputUmur').setAttribute('value', age) 
+        document.getElementById('genderValue').setAttribute('value', gender)
+        document.getElementById('inputPerasaan').setAttribute('value', feel)
+        
+
+        document.getElementById('inputNama').setAttribute('disabled', true)
+        document.getElementById('inputUmur').setAttribute('disabled', true)
+        document.getElementById('inputGender').setAttribute('hidden', true)
+
+        // memunculkan hidden input
+        document.getElementById('genderValue').removeAttribute('hidden')
+
+        document.getElementById('genderValue').setAttribute('disabled', true)
+        document.getElementById('inputPerasaan').setAttribute('disabled', true)
+        console.log(formData);
+
+        event.preventDefault()
+    })
+
+
+</script>
