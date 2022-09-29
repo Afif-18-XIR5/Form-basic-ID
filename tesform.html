@@ -62,8 +62,19 @@
                 </div>
             </div>
         </div>
+
         <input class="button" type="submit" id="submitButton" value="Simpan jawaban">
+
     </form>
+    <div class="card" id="done" style="display: none;">
+        <div class="header-card">
+            <br>
+        </div>
+        <div class="bagian-soal">
+            <p>Terima kasih sudah mengisi</p>
+        </div>
+    </div>
+    <center><button class="button" type="button" id="showValue" onclick="showData()" hidden>Lihat jawaban</button></center>
 </body>
 
 </html>
@@ -117,7 +128,7 @@
     .bagian-soal {
         padding: 20px;
     }
-
+    
     input,
     select {
         margin: 10px 0;
@@ -132,9 +143,9 @@
     select:focus {
         outline: none;
     }
-    
+
     input:disabled,
-    select:disabled{
+    select:disabled {
         color: black;
         background-color: white;
     }
@@ -155,11 +166,18 @@
         cursor: pointer;
     }
 
+    #done p {
+        text-align: center;
+        padding: 15px;
+    }
+
     @media screen and (max-width: 700px) {
-        .card{
+        .card {
             width: 90%;
         }
-        input, select{
+
+        input,
+        select {
             width: 100%;
         }
     }
@@ -179,25 +197,40 @@
             perasaan: feel
         }
 
+        //Input data start
         document.getElementById('inputNama').setAttribute('value', name)
-        document.getElementById('inputUmur').setAttribute('value', age) 
+        document.getElementById('inputUmur').setAttribute('value', age)
         document.getElementById('genderValue').setAttribute('value', gender)
         document.getElementById('inputPerasaan').setAttribute('value', feel)
-        
+
 
         document.getElementById('inputNama').setAttribute('disabled', true)
         document.getElementById('inputUmur').setAttribute('disabled', true)
         document.getElementById('inputGender').setAttribute('hidden', true)
 
-        // memunculkan hidden input
+        // memunculkan hidden element
         document.getElementById('genderValue').removeAttribute('hidden')
 
         document.getElementById('genderValue').setAttribute('disabled', true)
         document.getElementById('inputPerasaan').setAttribute('disabled', true)
+        document.getElementById('done').setAttribute('style', 'display: block;')
+        document.getElementById('showValue').removeAttribute('hidden')
+        form.setAttribute('style', 'display: none;')
+
         console.log(formData);
 
         event.preventDefault()
-    })
+        //Input data end
 
+    });
+
+    function showData(){
+        //Show data start
+        form.setAttribute('style', 'display: block;')
+        document.getElementById('done').setAttribute('style', 'display: none;')
+        document.getElementById('showValue').setAttribute('hidden', true)
+        document.getElementById('submitButton').setAttribute('hidden', true)
+        //Show data end
+    }
 
 </script>
